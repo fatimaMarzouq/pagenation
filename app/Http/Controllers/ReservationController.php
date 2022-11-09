@@ -25,4 +25,9 @@ class ReservationController extends Controller
     public function fetchAllData(){
         return view("data");
     }
+    public function deleteData($id){
+        $row = reservation::find($id);
+        $row->delete();
+        return 1;
+    }
 }

@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 Route::get('/paginate', [ReservationController::class,'allReservationEP']);
 Route::get('/data', [ReservationController::class,'fetchAllData']);
+Route::get('/deleteData/{id}', [ReservationController::class,'deleteData']);
 
