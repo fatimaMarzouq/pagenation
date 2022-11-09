@@ -19,8 +19,8 @@ class ReservationController extends Controller
     }
     public function allReservationEP(){
 
-        $reservation = reservation::paginate(15);
-        return json_encode($reservation);
+        $reservation = reservation::all()->orderBy('date','desc')->orderBy('time','asc')->get();
+        return $reservation;
     }
     public function fetchAllData(){
         return view("data");
