@@ -463,7 +463,7 @@ $("#add-row").click(function(){
         });
 		  $.ajax({
         type: "DELETE",
-        url: "https://florencestorytellers.com/deleteData/216016",
+        url: "https://florencestorytellers.com/deleteData/"+row._row.data.id,
        
         success: function()
         {
