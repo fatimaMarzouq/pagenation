@@ -19,7 +19,7 @@ class ReservationController extends Controller
     }
     public function allReservationEP(){
 
-        $reservation = reservation::all()->orderBy('date','desc')->orderBy('time','asc')->get();
+        $reservation = reservation::orderBy('date','desc')->orderBy('time','asc')->get();
         return $reservation;
     }
     public function fetchAllData(){
