@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/paginate', [ReservationController::class,'allReservationEP']);
+Route::get('/data', [ReservationController::class,'fetchAllData']);
 

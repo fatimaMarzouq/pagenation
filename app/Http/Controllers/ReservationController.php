@@ -22,4 +22,7 @@ class ReservationController extends Controller
         $reservation = reservation::paginate(15);
         return $reservation;
     }
+    public function fetchAllData(){
+        return view("data");
+    }
 }
