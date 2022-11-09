@@ -28,4 +28,9 @@ class reservation extends Model
     'price', 
     'price2', 
     'added'];
+    // turn off both 
+public $timestamps = false;
+
+// turn off only updated_at
+//const UPDATED_AT = false;
 }
