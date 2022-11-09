@@ -6,7 +6,7 @@
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.2/dist/js/tabulator.min.js"></script>
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <!--<div>-->
@@ -301,11 +301,13 @@
       
             { title: "Price", field: "price", width: 160, editor: true },
             { title: "Price2", field: "price2", width: 160, editor: true },
-            { title: "Shortname", field: "title", width: 160, editor: true, formatter:shortName},
+            { title: "Shortname", field: "title", width: 160, editor: true},
 			{formatter:"buttonCross", width:40, align:"center", cellClick:function(e, cell){
     			cell.getRow().delete();
 				}},
-			{formatter:"buttonTick", width:40, align:"center", },
+			{formatter:"buttonTick", width:40, align:"center", cellClick:function(e, cell){
+    			cell.getRow().update();
+				}},
         ],
     });
 
@@ -445,12 +447,48 @@
       
             { title: "Price", field: "price", width: 160, editor: true },
             { title: "Price2", field: "price2", width: 160, editor: true },
-            { title: "Shortname", field: "title", width: 160, editor: true,  formatter:shortName},
+            { title: "Shortname", field: "title", width: 160, editor: true},
         ],
     });
 $("#add-row").click(function(){
     tableAll.addRow({});
 });
+	
+	tableAll.on("rowDeleted", function(row){
+    console.log(row)
+		   $.ajaxSetup({
+            headers:
+            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+		  $.ajax({
+        type: "DELETE",
+        url: "https://florencestorytellers.com/deleteData/216016",
+       
+        success: function()
+        {
+          alert("Deleted"); // show response from the php script.
+        }
+    });
+});
+	
+	tableAll.on("rowUpdated", function(row){
+		console.log(row._row.data)
+				   $.ajaxSetup({
+            headers:
+            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+		  $.ajax({
+        type: "POST",
+		data:row._row.data,
+        url: "https://florencestorytellers.com/updatePostData",
+       
+        success: function()
+        {
+          alert("Added"); // show response from the php script.
+        }
+    });
+});
+	
   //$( document ).ready(function() {
   // table.setSort([
   //    {column:"date", dir:"desc"}, //sort by this first
