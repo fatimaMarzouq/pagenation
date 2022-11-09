@@ -30,4 +30,13 @@ class ReservationController extends Controller
         $row->delete();
         return 1;
     }
+    public function updatePostData($request){
+        // (`id`, `status`, `bookingID`, `bookingID2`, `sender`, `sender2`, `title`, `language`, `date`, `time`, `name`, `surname`, `adults`, `children`, `toddlers`, `email`, `phone`, `price`, `price2`, `added`
+        $data = $request->all();
+        $row = reservation::updateOrCreate(
+            ['id' => $request->id],
+            $data
+        );
+        return 1;
+    }
 }
