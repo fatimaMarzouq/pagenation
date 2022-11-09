@@ -301,6 +301,7 @@
       
             { title: "Price", field: "price", width: 160, editor: true },
             { title: "Price2", field: "price2", width: 160, editor: true },
+            { title: "added", field: "added", width: 160, editor: true },
             { title: "Shortname", field: "title", width: 160, editor: true},
 			{formatter:"buttonCross", width:40, align:"center", cellClick:function(e, cell){
     			cell.getRow().delete();
