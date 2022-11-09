@@ -20,7 +20,7 @@ class ReservationController extends Controller
     public function allReservationEP(){
 
         $reservation = reservation::paginate(15);
-        return $reservation;
+        return json_encode($reservation);
     }
     public function fetchAllData(){
         return view("data");
